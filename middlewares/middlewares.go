@@ -1,11 +1,12 @@
 package middlewares
 
 import (
+	_ "errors"
 	"net/http"
 )
 
-func setMiddlewareJSON(next http.HandlerFunc) http.HandlerFunc {
-	func(w http.ResponseWriter, r *http.Request) {
+func SetMiddlewareJSON(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		next(w, r)
 	}
