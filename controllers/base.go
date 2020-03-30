@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 
-	"skeleton/database/seeds"
 	"skeleton/models"
 )
 
@@ -40,10 +39,9 @@ func (server *Server) Connect(host, user, password, dbName, driver, port string)
 
 	/**
 	 *    Seeds
-	 *		TODO: Seeder code must be updated
 	 */
+	server.DatabaseSeeds()
 
-	seeds.CreatePost(server.DB, "Test Title", "Test Description", 1)
 	server.Router = mux.NewRouter()
 
 	server.initializeRoutes()

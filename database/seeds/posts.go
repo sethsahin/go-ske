@@ -8,12 +8,7 @@ import (
 )
 
 func CreatePost(db *gorm.DB, title, description string, order int) error {
-	err := db.DropTableIfExists(&models.Post{}).Error
-	if err != nil {
-		log.Fatalln("%v", err)
-	}
-
-	err = db.Debug().AutoMigrate(&models.Post{}).Error
+	err := db.Debug().AutoMigrate(&models.Post{}).Error
 	if err != nil {
 		log.Fatalln("%v", err)
 	}
