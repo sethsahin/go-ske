@@ -7,6 +7,8 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql" // Mysql Database Driver
 	"log"
 	"net/http"
+
+	"skeleton/models"
 )
 
 type Server struct {
@@ -34,13 +36,11 @@ func (server *Server) Connect(host, user, password, dbName, driver, port string)
 	 *	  Migrations
 	 */
 
+	server.DB.Debug().AutoMigrate(models.Post{})
+
 	server.Router = mux.NewRouter()
 
 	server.initializeRoutes()
-}
-
-func (server *Server) MigrateModels(values ...interface{}) {
-	server.DB.Debug().AutoMigrate(values)
 }
 
 func (server *Server) Run(addr string) {
