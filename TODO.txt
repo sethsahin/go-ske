@@ -1,0 +1,6 @@
+31.03.2020
+  - Server Method test in another package
+  - Repository Pattern
+  - Post Controller CRUD with repositories
+  - PostgreSQL integration
+  - Task Scheduler implementation
