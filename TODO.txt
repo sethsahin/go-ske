@@ -3,4 +3,5 @@
   - Repository Pattern
   - Post Controller CRUD with repositories
   - PostgreSQL integration
+  - Swagger integration
   - Task Scheduler implementation

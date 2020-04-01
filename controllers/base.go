@@ -2,11 +2,14 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/Pallinder/go-randomdata"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql" // Mysql Database Driver
 	"log"
+	"math/rand"
 	"net/http"
+	"skeleton/database/seeds"
 
 	"skeleton/models"
 )
@@ -50,4 +53,19 @@ func (server *Server) Connect(host, user, password, dbName, driver, port string)
 func (server *Server) Run(addr string) {
 	fmt.Println("Listening port on 8080")
 	log.Fatal(http.ListenAndServe(addr, server.Router))
+}
+
+func (server *Server) DatabaseSeeds() {
+	err := server.DB.Debug().DropTableIfExists(&models.Post{}).Error
+	if err != nil {
+		log.Fatalln("Cannot drop tables, %v", err)
+	}
+
+	counter := 0
+
+	for counter < 10 {
+		seeds.CreatePost(server.DB, randomdata.FirstName(randomdata.Male), randomdata.FirstName(randomdata.Male), rand.Intn(50))
+		counter += 1
+	}
+
 }
