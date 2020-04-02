@@ -7,6 +7,7 @@ import (
 
 type PostRepository interface {
 	GetAllPosts(db *gorm.DB) (*[]models.Post, error)
+	CreatePost(db *gorm.DB, p *models.Post) (*models.Post, error)
 }
 
 func GetAllPosts(db *gorm.DB) (*[]models.Post, error) {
@@ -18,4 +19,14 @@ func GetAllPosts(db *gorm.DB) (*[]models.Post, error) {
 	}
 
 	return &posts, err
+}
+
+func CreatePost(db *gorm.DB, p *models.Post) (*models.Post, error) {
+	var err error
+	err = db.Debug().Model(&models.Post{}).Create(&p).Error
+	if err != nil {
+		return &models.Post{}, err
+	}
+
+	return p, nil
 }
