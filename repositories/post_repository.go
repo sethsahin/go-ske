@@ -30,3 +30,14 @@ func CreatePost(db *gorm.DB, p *models.Post) (*models.Post, error) {
 
 	return p, nil
 }
+
+func GetPostById(db * gorm.DB, Id uint) (*models.Post, error) {
+	var err error
+	post := models.Post{}
+	err = db.Debug().Where("id = ?", Id).First(&post).Error
+	if err != nil {
+		return &models.Post{}, err
+	}
+
+	return &models.Post{}, err
+}

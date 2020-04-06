@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -40,4 +41,8 @@ func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	responses.JSON(w, http.StatusOK, true, postCreated)
+}
+
+func (server * Server) GetPostById(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r.URL.String())
 }
