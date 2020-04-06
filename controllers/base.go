@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"skeleton/database/seeds"
 
+	"reflect"
 	"skeleton/models"
 )
 
@@ -33,6 +34,7 @@ func (server *Server) Connect(host, user, password, dbName, driver, port string)
 		log.Fatalf("%v, Connect error", err)
 	} else {
 		fmt.Println("%v, Connected", driver)
+		fmt.Println(reflect.TypeOf(driver).String())
 	}
 
 	/**

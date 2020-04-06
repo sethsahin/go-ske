@@ -17,7 +17,7 @@ func (server *Server) Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	responses.JSON(w, http.StatusOK, repo)
+	responses.JSON(w, http.StatusOK, true, repo)
 }
 
 func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
@@ -39,5 +39,5 @@ func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	responses.JSON(w, http.StatusCreated, postCreated)
+	responses.JSON(w, http.StatusOK, true, postCreated)
 }
